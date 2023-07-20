@@ -1,0 +1,66 @@
+syntax = "proto3";
+
+option go_package = "git.querycap.com/cloudchain/chaincode/protos/adopter";
+
+package adopter;
+
+import "google/protobuf/timestamp.proto";
+
+message SetResourceRequest {
+    bytes payload = 1;
+    bytes logs = 2;
+    string version = 3;
+    string algorithm = 4;
+    google.protobuf.Timestamp timestamp = 5;
+}
+
+message GetGroupResponse {
+    bytes payload = 1;
+    string payload_version = 2;
+    string hash_algorithm = 3;
+}
+
+message GetStatRequest {
+    repeated string versions = 1;
+}
+
+message GetStatResponse {
+    map<string, GetStatEntry> payloads = 1;
+}
+
+message GetStatEntry {
+    bytes payload = 1;
+    string payload_version = 2;
+    google.protobuf.Timestamp timestamp = 3;
+}
+
+message GetGroupFileHashResponse {
+    repeated string file_hash = 1;
+}
+
+message SetFileMetaRequest {
+    string org_id = 1;
+    string resource_id = 2;
+    string file_name = 3;
+    string file_hash = 4;
+    string file_size = 5;
+    string remark = 6 ;
+}
+
+message SetTableMetaRequest {
+    bytes  payload = 1;
+    string org_id = 2;
+    string resource_id = 3;
+    string addrHash = 4;
+    string db_name = 5;
+    string remark = 6;
+}
+
+message SetAuthorityRecordRequest {
+    string owner_org_id = 1;
+    string authority_org_id = 2;
+    string authority_data_id = 3;
+    int64  period_of_validate = 4;
+    string remark = 5;
+    google.protobuf.Timestamp timestamp = 6;
+}

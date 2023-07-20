@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option go_package = "git.querycap.com/cloudchain/chaincode/protos/binary";
+
+package binary;
+
+enum FileUploadType {
+    FILE_UPLOAD_NEW = 0;
+    FILE_UPLOAD_UPDATE = 1;
+}
+
+message FileUploadEvent {
+    FileUploadType type = 1;
+    string data_hash = 2;
+}

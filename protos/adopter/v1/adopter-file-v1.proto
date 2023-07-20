@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+option go_package = "git.querycap.com/cloudchain/chaincode/protos/adopter";
+
+package adopter;
+
+message FileV1 {
+    string name = 1;
+    string hash = 2;
+    uint64 size = 3;
+}
+
+message FilePayloadV1 {
+    repeated FileV1 files = 1;
+}
+
+message FileStatV1 {
+    repeated string logs = 1;
+}

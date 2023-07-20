@@ -1,0 +1,48 @@
+syntax = "proto3";
+
+package adopter;
+
+message FileV2 {
+    string file_name = 1;
+    string file_hash = 2;
+    uint32 file_size = 3;
+    bytes logs = 4;
+}
+
+message FileMeta {
+    string org_id = 1;
+    string remark = 2;
+    repeated FileV2 files = 3;
+    uint64 timestamp = 4;
+}
+
+message TableV2 {
+    string table_name = 1;
+    string table_hash = 2;
+    bytes logs = 3;
+}
+
+
+message DatabaseV2 {
+    string db_name = 1;
+    repeated TableV2 tables = 2;
+}
+
+message TableMeta {
+    string org_id = 1;
+    string remark = 2;
+    repeated DatabaseV2 dbs = 3;
+    uint64 timestamp = 4;
+}
+
+message AuthorityMeta {
+    string owner_org_id = 1;
+    int64  period_of_validate = 2;
+    string remark = 3;
+    uint64 timestamp = 4;
+}
+
+message DataV2 {
+    bytes payload = 1;
+    string version = 2;
+}

@@ -1,0 +1,11 @@
+# Chaincodes
+
+[binary-upper]
+  name = "binary-upper"
+  path = "binary/upper/cmd"
+  version = "0.3.0"
+
+[binary-downer]
+  name = "binary-downer"
+  path = "binary/downer/cmd"
+  version = "0.4.0"

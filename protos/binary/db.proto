@@ -1,0 +1,47 @@
+syntax = "proto3";
+
+option go_package = "git.querycap.com/cloudchain/chaincode/protos/binary";
+
+package binary;
+
+import "google/protobuf/timestamp.proto";
+
+message Binlog {
+    repeated bytes data = 1;
+}
+
+message BinlogData {
+    uint64 sequence = 1;
+    bytes log = 2;
+    Stat stat= 3;
+}
+
+message Stats {
+    repeated Stat data = 1;
+}
+
+message Stat {
+    google.protobuf.Timestamp timestamp = 1;
+    repeated DBStat data = 2;
+}
+
+message DBStat {
+    string Name = 1;
+    repeated TableStat tableStat = 2;
+}
+
+message TableStat {
+    string name = 1;
+    DML dml = 2;
+    DDL ddl = 3;
+}
+
+message DML {
+    uint64 adds = 1;
+    uint64 updates = 2;
+    uint64 deletes = 3;
+}
+
+message DDL {
+    string sql = 1;
+}
