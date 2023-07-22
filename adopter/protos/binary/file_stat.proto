@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+option go_package = "github.com/waylennn/chaincode/adopter/protos/binary";
+
+package binary;
+
+import "google/protobuf/timestamp.proto";
+
+message FileStatsSets {
+    repeated bytes data = 1;
+}
+
+message FileStatSet {
+    google.protobuf.Timestamp timestamp = 1;
+    string data_hash = 2;
+    repeated bytes data = 3;
+}
+
+message FileStat {
+    string log = 1;
+    bool hasDetail = 2;
+    FileStatDetail detail = 3;
+}
+
+message FileStatDetail {
+    uint32 adds = 1;
+    uint32 updates = 2;
+    uint32 deletes = 3;
+}
+

@@ -1,0 +1,52 @@
+syntax = "proto3";
+
+option go_package = "github.com/waylennn/chaincode/adopter/protos/binary";
+
+package binary;
+
+import "google/protobuf/timestamp.proto";
+
+enum FileType {
+    GENERAL = 0;
+    EXCEL = 1;
+}
+
+message GroupChange {
+    repeated bytes changes = 1;
+    repeated string deletes = 2;
+}
+
+message File {
+    string name = 1;
+    bytes data = 2;
+    int32 type = 3;
+    repeated string index= 4;
+}
+
+message FileIndex {
+    string fileName = 1;
+    string index = 2;
+}
+
+message FileIndexHeader {
+    google.protobuf.Timestamp timestamp = 1;
+    string data_hash = 2;
+}
+
+message FileIndexTable {
+    bytes header = 1;
+    repeated bytes indexes = 2;
+}
+
+message FileIndexTableHistory {
+    repeated bytes data = 1;
+}
+
+message GroupList {
+    google.protobuf.Timestamp timestamp = 1;
+    map<string, string> files = 2;
+}
+
+message GroupFile {
+    map<string, bytes> files = 1;
+}

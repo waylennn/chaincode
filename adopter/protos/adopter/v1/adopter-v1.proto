@@ -1,0 +1,52 @@
+syntax = "proto3";
+
+option go_package = "github.com/waylennn/chaincode/adopter/protos/adopter";
+
+package adopter;
+
+import "google/protobuf/timestamp.proto";
+
+message GMetadataV1 {
+    google.protobuf.Timestamp timestamp = 1;
+
+    // The version of the group
+    string version = 2;
+
+    // The hash algorithm's name
+    string hash_algorithm = 3;
+}
+
+message SMetadataV1 {
+    google.protobuf.Timestamp timestamp = 1;
+    string version = 2;
+}
+
+message GroupData {
+    string version = 1;
+    bytes data = 2;
+}
+
+message GroupMetadata {
+    string version = 1;
+    bytes metadata = 2;
+}
+
+message Group {
+    GroupData data = 1;
+    GroupMetadata metadata = 2;
+}
+
+message StatMetadata {
+    string version = 1;
+    bytes metadata = 2;
+}
+
+message StatData {
+    string version = 1;
+    bytes data = 2;
+}
+
+message Stat {
+    StatData data = 1;
+    StatMetadata metadata = 2;
+}

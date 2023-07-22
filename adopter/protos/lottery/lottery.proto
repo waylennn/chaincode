@@ -1,0 +1,76 @@
+syntax = "proto3";
+
+package lottery;
+
+// 参与者
+message Participator {
+    string id = 1;
+    string name = 2;
+    string word = 3;
+    string time = 4;
+    string lottery_code = 5;
+}
+
+// 抽奖池参与者信息
+message PartyLottery {
+    string id = 1;
+    string lottery_code = 2;
+}
+
+// 中奖信息
+message WinLottery {
+    string id = 1;
+    string lottery_code = 2;
+    string win_word = 3;
+    string win_code = 4;
+}
+
+message ListOfString {
+    repeated string value = 1;
+}
+
+message ListOfRound {
+    repeated ListOfString round = 1;
+}
+
+
+// 单场抽奖数组
+message LotteryData {
+   map<string, PartyLottery> parties = 1; // 抽奖池(用抽奖码为key)
+   map<string, ListOfRound> priority_parties = 2; // 优先抽奖池(本轮未得到唯一中奖者，则进入此数组，用轮次数为key)
+   map<string, WinLottery> win_lottery = 3; // 中奖记录(用轮次数为key)
+}
+
+// 单场单轮单次的抽奖结果记录
+message LotteryRecord {
+    string win_word = 1;
+    string win_code = 2;
+    repeated string sort_code = 3;
+    repeated double sort_value = 4;
+}
+
+// 抽奖过程
+message LotteryHistory {
+    repeated LotteryRecord lottery_history = 1;
+}
+
+message PartyKV {
+    string key = 1;
+    PartyLottery value = 2;
+}
+
+message PriorityPartyKV {
+    string key = 1;
+    ListOfRound value = 2;
+}
+
+message WinLotteryKV {
+    string key = 1;
+    WinLottery value = 2;
+}
+
+message LotteryStoreData {
+    repeated PartyKV parties = 1; // 抽奖池(用抽奖码为key)
+    repeated PriorityPartyKV priority_parties = 2; // 优先抽奖池(本轮未得到唯一中奖者，则进入此数组，用轮次数为key)
+    repeated WinLotteryKV win_lottery = 3; // 中奖记录(用轮次数为key)
+}
